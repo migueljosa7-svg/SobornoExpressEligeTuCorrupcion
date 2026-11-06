@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: #0a0a0a;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  font-family: ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
+  background-image: repeating-linear-gradient(45deg, #0f0f12 0 14px, #0a0a0a 14px 28px);
+}
+
+@layer components {
+  .btn-brut {
+    @apply font-display uppercase tracking-wide text-lg py-3 px-4 border-4 border-black shadow-brut transition-transform duration-100;
+  }
+  .btn-brut:active { transform: translate(4px, 4px); box-shadow: 1px 1px 0 0 #000; }
+}
+
+@keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(.94); } to { opacity: 1; transform: none; } }
+.card-enter { animation: cardIn .3s cubic-bezier(.2,.8,.2,1); }
+@keyframes pop { 0% { opacity: 0; transform: scale(.6); } 20% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1); } }
+.delta-pop { animation: pop .9s ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-enter, .delta-pop { animation: none; }
+}
